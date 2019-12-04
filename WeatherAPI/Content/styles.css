@@ -1,0 +1,56 @@
+﻿/*Reset Styles*/
+html {
+    font-size: 19px;
+}
+
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+/* Body Content*/
+
+body {
+    padding-top: 0.5px;
+    padding-bottom: 0.5px;
+}
+
+.body-content {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+h1 {
+    text-align: center;
+}
+
+/* Table Content*/
+table {
+    width: 50%;
+    margin: 0 auto;
+}
+
+th, td {
+    border: 1px solid black;
+}
+
+
+th {
+    padding: 0.1em 0.3em;
+    background-color: aqua;
+}
+
+td {
+    padding: 0.3em;
+    text-align: center;
+    background-color: darkseagreen;
+}
+
+/* Buttons */
+
+#buttons {
+    text-align: center;
+    padding-top: 0.5em;
+    margin-bottom: 1em;
+}

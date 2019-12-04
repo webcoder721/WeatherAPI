@@ -1,0 +1,49 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Web Dev Weather</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="Content/styles.css" />
+    <script src="Scripts/jquery-3.3.1.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var tblWeather = $('#tblWeather');
+            $('#btnSearch').click(function () {
+                var inputVal = document.getElementById("inputZip").value;
+                $.ajax({
+                    type: 'GET',
+                    url: 'https://api.openweathermap.org/data/2.5/forecast?zip=' + inputVal + ',us&APPID=5ca19dffcb8614c606b26a68aa69bd5d',
+                    dataType: 'json',
+                    success: function (data) {
+                        tblWeather.empty();
+                        var cityName = data.city.name;
+                        tblWeather.append('<thead>' + '<tr>' + '<th colspan="3">' + cityName + '</th>' + '</tr>' + '</thead>');
+                        tblWeather.append('<tbody>' + '<tr>' + '<th>' + "Date/Time" + '</th>' + '<th>' + "Temperature" + '</th>' + '<th>' + "Pressure" + '</th>' + '</tr>' + '</tbody>');
+                        $.each(data.list, function (index, val) {
+                            var dT = data.list[index].dt_txt;
+                            var temp = data.list[index].main.temp;
+                            var pressure = data.list[index].main.pressure;
+                            tblWeather.append('<tbody>' + '<tr>' + '<td>' + dT + '</td>' + '<td>' + temp + '</td>' + '<td>' + pressure + '</td>' + '</tbody>');
+                        });
+                    }
+                })
+            });
+
+            $('#btnClear').click(function () {
+                tblWeather.empty();
+                var inputVal = document.getElementById("inputZip").value=null;
+            });
+        });
+    </script>
+</head>
+<body>
+    <h1>Web Dev Weather</h1>
+    <div id="buttons">
+        <input type="text" placeholder="Enter Zip Code" id="inputZip" />
+        <input id="btnSearch" type="button" value="Search" />
+        <input id="btnClear" type="button" value="Clear" />
+    </div>
+    <table id="tblWeather"></table>
+
+</body>
+</html>
